@@ -15,6 +15,9 @@ namespace testWindowsForms
 {
     public partial class Calculadora : MaterialForm
     {
+        string input;
+        double val1 = 0, val2 = 0;
+        string operation;
         public Calculadora()
         {
             InitializeComponent();
@@ -25,9 +28,7 @@ namespace testWindowsForms
 
 
 
-        double tempValue=0;
-        string operacion = "";
-        int howManyTimesHasAButtonBeenPresses = 0;
+      
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -36,43 +37,131 @@ namespace testWindowsForms
         void Button_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-
-
+            input += button.Text;
             Operacion.Text += button.Text;
-            howManyTimesHasAButtonBeenPresses += 1;
+           
+
         }
 
 
         void ClearOperation(object sender, EventArgs e)
         {
+            Resultado.Text = "";
             Operacion.Text = "";
-            howManyTimesHasAButtonBeenPresses = 0;
+            val1 = 0;
+            val2 = 0;
+            input = "";
+
 
         }
 
-        void SumaOp(object sender, EventArgs e)
+        void OperationCalc(object sender, EventArgs e)
         {
+            Button button = (Button)sender;
 
-            double tempValue = double.Parse(Operacion.Text);
-            operacion = "+";
-            Operacion.Text += "+";
-            howManyTimesHasAButtonBeenPresses += 1;
+            if (val1 == 0)
+            {
+                val1 = double.Parse(input);
+            } else
+            {
+                val2 = double.Parse(input);
+            }
+
+            input = "";
+            switch (button.Text)
+            {
+                case "+":
+                    Resultado.Text = $"{val1 + val2}";
+                    val1 = val1 + val2;
+                    operation = "+";
+                    Operacion.Text += "+";
+                    break;
+                case "-":
+                    Resultado.Text = $"{val1 - val2}";
+                    val1 = val1 - val2;
+                    operation = "-";
+                    Operacion.Text += "-";
+                    break;
+                case "*":
+                    if (val2 == 0)
+                    {
+                        val2 = 1;
+                    }
+                    Resultado.Text = $"{val1 * val2}";
+                    val1 = val1 * val2;
+                    operation = "*";
+                    Operacion.Text += "*";
+                    break;
+                case "/":
+                    
+                   if(val2 == 0)
+                    {
+                        val2 = 1;
+                    }
+                    Resultado.Text = $"{val1 / val2}";
+                    val1 = val1 / val2;
+                    operation = "/";
+                    Operacion.Text += "/";
+                    break;
+            }
+          
+
+
+           
+
 
         }
+
+      
 
         void Result(object sender, EventArgs e)
         {
+             val2 = double.Parse(input);
 
-            switch (operacion)
+            switch (operation)
             {
                 case "+":
-                    tempValue = tempValue + double.Parse(Operacion.Text.Substring(howManyTimesHasAButtonBeenPresses));
-                    Resultado.Text = tempValue.ToString();
+                    Resultado.Text = $"{val1 + val2}";
+                    val1 = val1 + val2;
+                    operation = "+";
+                    //Operacion.Text += "+";
                     break;
+                case "-":
+                    Resultado.Text = $"{val1 - val2}";
+                    val1 = val1 - val2;
+                    operation = "-";
+                    //Operacion.Text += "-";
+                    break;
+                case "*":
+                    if (val2 == 0)
+                    {
+                        val2 = 1;
+                    }
+                    Resultado.Text = $"{val1 * val2}";
+                    val1 = val1 * val2;
+                    operation = "*";
+                    //Operacion.Text += "*";
+                    break;
+                case "/":
+                    if (val2 == 0)
+                    {
+                        MessageBox.Show("No se puede dividir entre cero");
+                        Operacion.Text = "";
+                        val1 = 0;
+                        val2 = 0;
+                        return;
 
+                    }
+                    Resultado.Text = $"{val1 / val2}";
+                    val1 = val1 / val2;
+                    operation = "/";
+                    //Operacion.Text += "/";
+                    break;
             }
-           
 
+
+
+            Operacion.Text = "";
            
         }
     }

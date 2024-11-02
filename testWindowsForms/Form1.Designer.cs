@@ -129,7 +129,7 @@
             this.Suma.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.Suma.UseAccentColor = false;
             this.Suma.UseVisualStyleBackColor = true;
-            this.Suma.Click += new System.EventHandler(this.SumaOp);
+            this.Suma.Click += new System.EventHandler(this.OperationCalc);
             // 
             // Boton4
             // 
@@ -189,7 +189,7 @@
             this.Resta.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.Resta.UseAccentColor = false;
             this.Resta.UseVisualStyleBackColor = true;
-            this.Resta.Click += new System.EventHandler(this.Button_Click);
+            this.Resta.Click += new System.EventHandler(this.OperationCalc);
             // 
             // Boton1
             // 
@@ -249,7 +249,7 @@
             this.Multiplicacion.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.Multiplicacion.UseAccentColor = false;
             this.Multiplicacion.UseVisualStyleBackColor = true;
-            this.Multiplicacion.Click += new System.EventHandler(this.Button_Click);
+            this.Multiplicacion.Click += new System.EventHandler(this.OperationCalc);
             // 
             // Boton0
             // 
@@ -349,7 +349,7 @@
             this.Division.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.Division.UseAccentColor = false;
             this.Division.UseVisualStyleBackColor = true;
-            this.Division.Click += new System.EventHandler(this.Button_Click);
+            this.Division.Click += new System.EventHandler(this.OperationCalc);
             // 
             // Boton9
             // 
